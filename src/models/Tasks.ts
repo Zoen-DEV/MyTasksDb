@@ -41,11 +41,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: false
-      },
-      UserId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      }
     },
     {
       sequelize,

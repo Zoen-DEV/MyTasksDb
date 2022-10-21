@@ -4,6 +4,7 @@ interface UsersAttributes {
   email: string;
   userName: string;
   password: string;
+  isActive: boolean;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -11,9 +12,11 @@ module.exports = (sequelize: any, DataTypes: any) => {
     email!: string;
     userName!: string;
     password!: string;
+    isActive!: boolean;
 
     static associate(models: any) {
       Users.hasMany(models.Tasks, { foreignKey: "UserId" });
+      Users.hasOne(models.SignupToken, { foreignKey: "UserTokenId" });
     }
   }
 
@@ -42,6 +45,11 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
       password: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
       },
     },
